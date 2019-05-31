@@ -29,17 +29,17 @@ public class ChangePasswordTest {
 	private Logger log=LoggerFactory.getLogger(ChangePasswordTest.class);
 	@Test
 	public void changeMimaTest(){
-//		Long userId=1l;
-//		String newPassword="1234";
-//		userService.changePassword(userId, newPassword);
-		User user=new User();
-		user.setId(2l);
-		user.setLocked(false);
-		user.setPassword("1234");
-		user.setSalt("zhong");
-		user.setUsername("zhong");
-		
-		userService.createUser(user);
+		Long userId=2l;
+		String newPassword="1234";
+		userService.changePassword(userId, newPassword);
+//		User user=new User();
+//		user.setId(2l);
+//		user.setLocked(false);
+//		user.setPassword("1234");
+//		user.setSalt("zhong");
+//		user.setUsername("zhong");
+//
+//		userService.createUser(user);
 	}
 	@Test
 	public void RoleSetByUsername(){

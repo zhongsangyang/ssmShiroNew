@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+    <!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+      <settings>  
+          <!-- 关闭懒加载模式 -->  
+          <setting name="lazyLoadingEnabled" value="false" />
+          <!-- employee_salary    employeeSalary 自动把带有_的转成驼峰式规则 -->
+          <setting name="mapUnderscoreToCamelCase" value="true" />
+          <!-- mybatis的日志输出 -->
+          <setting name="logImpl" value="STDOUT_LOGGING" />
+          <!--useGeneratedKeys 取值范围true|false 默认值是：false。 含义：设置是否使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty设置的领域模型属性中。-->
+          <setting name="useGeneratedKeys" value="true" />
+          <!-- 数据表里的column，JavaBean中有属性，直接使用数据表里的column名称匹配javabean的属性名称 -->
+          <setting name="useColumnLabel" value="true" />
+          <setting name="callSettersOnNulls" value="true"/>
+      </settings>  
+     <typeAliases>  
+         <!--这里给实体类取别名，方便在mapper配置文件中使用--> 
+         <package name="com.entity"/>
+     </typeAliases>
+</configuration>

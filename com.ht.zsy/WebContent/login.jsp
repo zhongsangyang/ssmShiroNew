@@ -1,62 +1,54 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%
-	String path=request.getContextPath();
-%>
-<html>
+<%@ include file="NewFile1.jsp" %>
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <link href="<%=path%>/css/bootstrap.min.css" rel="stylesheet"></link>
-    <script src="<%=path%>/js/jquery-3.2.1.min.js"></script>
-    <script src="<%=path%>/js/bootstrap/bootstrap.min.js"></script>
-    <title>登录</title>
-    <style>
-    	.error{
-    		color:red;
-    	}
-    	
-    	a:link{
-    		color:#FF0000;
-    		text-decoration: underline;	
-    	}
-    	a:VISITED {
-			color:#0000000;
-			text-decoration: none;
-		}
-		a:HOVER {
-			color:#000000;
-			text-decoration: none;
-		}
-		a:ACTIVE {
-			color:#00000F;
-			text-decoration: none;
-		}	
-    </style>
+    <meta charset="UTF-8" />
+    <title>index</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link
+            href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet" />
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script
+            src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js">
+
+    </script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script
+            src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js">
+
+    </script>
 </head>
 <body>
+<form id="form1" class="well"
+      style="width: 30em; margin: auto; margin-top: 150px;" action="${pageContext.request.contextPath}/login/login" method="post">
+    <h3>用户登录</h3>
+    <div class=" input-group input-group-md">
+              <span class="input-group-addon" id="sizing-addon1"><i
+                      class="glyphicon glyphicon-user" aria-hidden="true"></i></span> <input
+            id="userName" name="userName" type="text" class="form-control" placeholder="用户名"
+            aria-describedby="sizing-addon1" />
+    </div>
+    <br />
+    <div class="input-group input-group-md">
+              <span class="input-group-addon" id="sizing-addon1"><i
+                      class="glyphicon glyphicon-lock"></i></span> <input type="password"
+                                                                       name="password"   id="password" class="form-control" placeholder="密码"
+                                                                          aria-describedby="sizing-addon1" />
+    </div>
+    <!--     <div class="well well-sm" style="text-align: center;">
+             <input  type="radio" name="kind" value="tea" /> 管理员 <input
+                   type="radio" name="kind" value="stu" /> 学生
+         </div>
+     -->
+    <input type="submit" class="btn btn-success btn-block" value="登录"/>
+    <a class="btn btn-sm btn-white btn-block" style="text-align: right;" th:href="@{register}" href="<%=basePath%>register.jsp"><h6>还没有账户？前往注册</h6></a>
+</form>
+<script>
 
-<div class="error">${error}</div>
-<shiro:authenticated>
-	我已经等入过了
-	<form action="${pageContext.request.contextPath }/login/loginout" method="post">
-	<input type="submit" value="安全退出"/>
-	</form>
-</shiro:authenticated>
-<shiro:guest>
-<form class="form-inline" action="<%=path%>/login/login" method="post">
-  <div class="form-group">
-    <label for="username">Name</label>
-    <input type="text" class="form-control" name="username" placeholder="username">
-  </div>
-  <div class="form-group">
-    <label for="password">password</label>
-    <input type="password" class="form-control" name="password" placeholder="password">
-  </div>
-  <button type="submit" class="btn btn-default">Send invitation</button>
-  </form>
-</shiro:guest>
+</script>
 </body>
 </html>

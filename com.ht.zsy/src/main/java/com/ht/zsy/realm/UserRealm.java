@@ -1,15 +1,8 @@
 package com.ht.zsy.realm;
 
-import com.ht.zsy.po.Role;
 import com.ht.zsy.po.User;
 import com.ht.zsy.service.Impl.UserService;
 import com.ht.zsy.utils.MySimpleByteSource;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -18,9 +11,12 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
-import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * <p>User: Zhang Kaitao
@@ -81,7 +77,8 @@ public class UserRealm extends AuthorizingRealm {
         if(Boolean.TRUE.equals(user.getLocked())) {
             throw new LockedAccountException(); //帐号锁定
         }
-
+        Session session=SecurityUtils.getSubject().getSession();
+        session.setAttribute("user",user);
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(), //用户名

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.zsy.dao.ShoporderMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.zsy.entity.Shoporder" >
+    <id column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="shopid" property="shopid" jdbcType="INTEGER" />
+    <result column="buycount" property="buycount" jdbcType="INTEGER" />
+    <result column="oneprice" property="oneprice" jdbcType="DOUBLE" />
+    <result column="allprice" property="allprice" jdbcType="DOUBLE" />
+    <result column="shopName" property="shopName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderid, shopid, buycount, oneprice, allprice, user_id,shopName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shoporder
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shoporder
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ht.zsy.entity.Shoporder" >
+    insert into shoporder (orderid, shopid, buycount, 
+      oneprice, allprice, user_id,shopName
+      )
+    values (#{orderid,jdbcType=INTEGER}, #{shopid,jdbcType=INTEGER}, #{buycount,jdbcType=INTEGER}, 
+      #{oneprice,jdbcType=DOUBLE}, #{allprice,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER},
+      #{shopName})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.zsy.entity.Shoporder" >
+    insert into shoporder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="shopid != null" >
+        shopid,
+      </if>
+      <if test="buycount != null" >
+        buycount,
+      </if>
+      <if test="oneprice != null" >
+        oneprice,
+      </if>
+      <if test="allprice != null" >
+        allprice,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="shopName != null" >
+        shopName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="shopid != null" >
+        #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="buycount != null" >
+        #{buycount,jdbcType=INTEGER},
+      </if>
+      <if test="oneprice != null" >
+        #{oneprice,jdbcType=DOUBLE},
+      </if>
+      <if test="allprice != null" >
+        #{allprice,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.zsy.entity.Shoporder" >
+    update shoporder
+    <set >
+      <if test="shopid != null" >
+        shopid = #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="buycount != null" >
+        buycount = #{buycount,jdbcType=INTEGER},
+      </if>
+      <if test="oneprice != null" >
+        oneprice = #{oneprice,jdbcType=DOUBLE},
+      </if>
+      <if test="allprice != null" >
+        allprice = #{allprice,jdbcType=DOUBLE},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null and shopName!=''" >
+        shopName = #{shopName,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.zsy.entity.Shoporder" >
+    update shoporder
+    set shopid = #{shopid,jdbcType=INTEGER},
+      buycount = #{buycount,jdbcType=INTEGER},
+      oneprice = #{oneprice,jdbcType=DOUBLE},
+      allprice = #{allprice,jdbcType=DOUBLE},
+      user_id = #{userId,jdbcType=INTEGER},
+      shopName=#{shopName,jdbcType=VARCHAR}
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </update>
+  <select id="selectoneOrder" resultType="com.ht.zsy.entity.Shoporder">
+    select * from shoporder where shopid=#{shopid} and user_id=#{userid};
+  </select>
+  <select id="selectgowuche" parameterType="int" resultMap="BaseResultMap">
+    select * ,(select count(orderid) from shoporder) as allcount from shoporder where user_id=#{userid} limit #{pageIndex},#{pageNum};
+  </select>
+</mapper>

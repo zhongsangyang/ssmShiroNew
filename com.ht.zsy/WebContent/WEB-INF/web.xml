@@ -4,10 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <!-- Spring和mybatis的配置文件 -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:config/spring-mybatis.xml</param-value>
-    </context-param>
+
     <!-- 编码过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
@@ -27,6 +24,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:config/spring-beans.xml,
+            classpath:config/spring-mybatis.xml
             classpath:config/spring-shiro-web.xml
         </param-value>
     </context-param>
@@ -130,11 +128,8 @@
         <param-value>ssmTest.root</param-value>
     </context-param>
     
-    <error-page>  
-        <error-code>405</error-code>  
-        <location>/WEB-INF/error.jsp</location>  
-    </error-page>  
+
     <welcome-file-list>
-        <welcome-file>/index.jsp</welcome-file>
+        <welcome-file>/weclome.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

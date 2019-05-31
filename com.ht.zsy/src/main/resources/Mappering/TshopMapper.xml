@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.zsy.dao.TshopMapper">
+  <resultMap id="BaseResultMap" type="com.ht.zsy.entity.TShop">
+    <id column="shopid" jdbcType="INTEGER" property="shopid" />
+    <id column="allcount" jdbcType="INTEGER" property="allcount" />
+    <result column="shopName" jdbcType="VARCHAR" property="shopname" />
+    <result column="shopPrice" jdbcType="DOUBLE" property="shopprice" />
+    <result column="shopDescription" jdbcType="VARCHAR" property="shopdescription" />
+    <result column="shopImageUrl" jdbcType="VARCHAR" property="shopimageurl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shopid, shopName, shopPrice, shopDescription, shopImageUrl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_shop
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_shop
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ht.zsy.entity.TShop">
+    insert into t_shop (shopid, shopName, shopPrice, 
+      shopDescription, shopImageUrl)
+    values (#{shopid,jdbcType=INTEGER}, #{shopname,jdbcType=VARCHAR}, #{shopprice,jdbcType=DOUBLE}, 
+      #{shopdescription,jdbcType=VARCHAR}, #{shopimageurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ht.zsy.entity.TShop">
+    insert into t_shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopid != null">
+        shopid,
+      </if>
+      <if test="shopname != null">
+        shopName,
+      </if>
+      <if test="shopprice != null">
+        shopPrice,
+      </if>
+      <if test="shopdescription != null">
+        shopDescription,
+      </if>
+      <if test="shopimageurl != null">
+        shopImageUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopid != null">
+        #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="shopname != null">
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopprice != null">
+        #{shopprice,jdbcType=DOUBLE},
+      </if>
+      <if test="shopdescription != null">
+        #{shopdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="shopimageurl != null">
+        #{shopimageurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ht.zsy.entity.TShop">
+    update t_shop
+    <set>
+      <if test="shopname != null">
+        shopName = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopprice != null">
+        shopPrice = #{shopprice,jdbcType=DOUBLE},
+      </if>
+      <if test="shopdescription != null">
+        shopDescription = #{shopdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="shopimageurl != null">
+        shopImageUrl = #{shopimageurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ht.zsy.entity.TShop">
+    update t_shop
+    set shopName = #{shopname,jdbcType=VARCHAR},
+      shopPrice = #{shopprice,jdbcType=DOUBLE},
+      shopDescription = #{shopdescription,jdbcType=VARCHAR},
+      shopImageUrl = #{shopimageurl,jdbcType=VARCHAR}
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectShopList" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List" />  ,(select count(shopid) from t_shop) as allcount from t_shop limit  #{pageIndex} ,
+    #{pageNum};
+
+  </select>
+
+
+</mapper>

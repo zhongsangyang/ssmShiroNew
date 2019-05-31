@@ -1,20 +1,20 @@
 package com.ht.zsy.cacaheManger;
 
-import java.io.ByteArrayInputStream;  
-import java.io.IOException;  
-import java.io.InputStream;  
-  
-import org.apache.commons.io.IOUtils;  
-import org.apache.shiro.cache.Cache;  
-import org.apache.shiro.cache.CacheException;  
-import org.apache.shiro.cache.CacheManager;  
-import org.apache.shiro.cache.ehcache.EhCache;  
-import org.apache.shiro.config.ConfigurationException;  
-import org.apache.shiro.io.ResourceUtils;  
-import org.apache.shiro.util.Destroyable;  
-import org.apache.shiro.util.Initializable;  
-import org.slf4j.Logger;  
-import org.slf4j.LoggerFactory;  
+import org.apache.commons.io.IOUtils;
+import org.apache.shiro.cache.Cache;
+import org.apache.shiro.cache.CacheException;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.cache.ehcache.EhCache;
+import org.apache.shiro.config.ConfigurationException;
+import org.apache.shiro.io.ResourceUtils;
+import org.apache.shiro.util.Destroyable;
+import org.apache.shiro.util.Initializable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
   
 
 public class EhCacheManager implements CacheManager, Initializable, Destroyable {  

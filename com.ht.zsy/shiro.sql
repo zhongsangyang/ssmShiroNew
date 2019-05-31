@@ -1,3 +1,5 @@
+create  database testshop;
+use testshop;
 drop table if exists sys_users;
 drop table if exists sys_roles;
 drop table if exists sys_permissions;
@@ -62,3 +64,6 @@ INSERT INTO `sys_roles` VALUES ('100003', 'guest', '游客', '0');
 INSERT INTO `sys_users_roles` VALUES ('2', '100001');
 INSERT INTO `sys_users_roles` VALUES ('2', '100002');
 INSERT INTO `sys_users_roles` VALUES ('2', '100003');
+
+
+

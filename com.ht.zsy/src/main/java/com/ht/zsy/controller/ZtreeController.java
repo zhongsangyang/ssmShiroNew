@@ -1,40 +1,23 @@
 package com.ht.zsy.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.Resource;
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.ht.zsy.po.TreeVo;
+import com.ht.zsy.po.UserInfo;
+import com.ht.zsy.service.Impl.UserService;
+import net.sf.json.JSONArray;
 import org.apache.shiro.SecurityUtils;
-import org.hamcrest.core.Is;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ht.zsy.po.Role;
-import com.ht.zsy.po.TreeVo;
-import com.ht.zsy.po.User;
-import com.ht.zsy.po.UserInfo;
-import com.ht.zsy.service.Impl.UserService;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/ztree")

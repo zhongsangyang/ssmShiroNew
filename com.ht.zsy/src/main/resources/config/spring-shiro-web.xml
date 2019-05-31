@@ -108,12 +108,15 @@
                 /css/** = anon
                 /js/** = anon
                 <!-- 登录相关不拦截 -->
-			
+			    /register.jsp=anon
+                /login/register=anon
+                /login/guodu=anon
+                /login/chongfujsp=anon
 				/login/hasRole = authc,roles[admin]
 				/page/file* = authc,roles[普通用户,数据管理员]
 				/page/showItem* = authc,roles[数据管理员,普通用户]
 				/page/updateItem*=authc,roles[数据管理员]
-				/** = anon <!-- 其他不拦截 -->
+				/** = authc <!-- 其他不拦截 -->
             </value>
         </property>
     </bean>
